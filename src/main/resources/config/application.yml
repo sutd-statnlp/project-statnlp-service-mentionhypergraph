@@ -1,0 +1,29 @@
+
+info:
+    app:
+        name: Mention Hypergraph Service
+        description: StatNLP Mention Hypergraph Service Application
+        version: 1.0.0
+
+logging:
+    level:
+        ROOT: DEBUG
+        com.sutd.statnlp.mhservice: DEBUG
+
+management:
+    security:
+        enabled: false
+
+spring:
+    application:
+        name: Mention Hypergraph Service App
+
+server:
+    port: 8080
+
+
+springfox:
+    documentation:
+        swagger:
+              v2:
+                  path: /api-docs
