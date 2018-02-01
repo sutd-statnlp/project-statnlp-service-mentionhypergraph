@@ -3,7 +3,7 @@
 ## Models
 - mentionHypergraph-small.model is not accurate
 - mentionHypergraph.model is quite slow
-- Download: https://www.dropbox.com/sh/ndahoxv24i3d2yi/AADppfPjVVaFtokL_9qpiEXYa?dl=0
+- Download: https://drive.google.com/open?id=1dMY1ebw3o7Kv7TkEx6Z991zbA5apKfrN
 - After download, put them into the folder src/main/resources/model
 
 ## Development
