@@ -13,6 +13,7 @@ import org.statnlp.example.mention_hypergraph.Span;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 @RestController
 @RequestMapping("/api")
@@ -27,16 +28,18 @@ public class ModelResource {
     }
 
     @PostMapping("/analyze/small")
-    @Async
-    public CompletableFuture<List<Span>> postAnalyzeBySmallModel(@RequestBody AnalysisDTO analysisDTO){
+    public List<Span> postAnalyzeBySmallModel(@RequestBody AnalysisDTO analysisDTO) throws ExecutionException, InterruptedException {
         log.debug("request to analyze text by small model: {}",analysisDTO);
-        return modelService.analyzeBySmallModel(analysisDTO.getText(),analysisDTO.getPenalty());
+        CompletableFuture<List<Span>> result = modelService.analyzeBySmallModel(analysisDTO.getText(),analysisDTO.getPenalty());
+        CompletableFuture.anyOf(result);
+        return result.get();
     }
 
     @PostMapping("/analyze/main")
-    @Async
-    public CompletableFuture<List<Span>> postAnalyzeByMainModel(@RequestBody AnalysisDTO analysisDTO){
+    public List<Span> postAnalyzeByMainModel(@RequestBody AnalysisDTO analysisDTO) throws ExecutionException, InterruptedException {
         log.debug("request to analyze text by main model: {}",analysisDTO);
-        return modelService.analyzeByMainModel(analysisDTO.getText(),analysisDTO.getPenalty());
+        CompletableFuture<List<Span>> result = modelService.analyzeByMainModel(analysisDTO.getText(),analysisDTO.getPenalty());
+        CompletableFuture.anyOf(result);
+        return result.get();
     }
 }
